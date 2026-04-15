@@ -1,15 +1,18 @@
 package com.student.service.impl;
 
 import com.student.model.Student;
+import com.student.repository.StudentRepository;
 import com.student.service.StudentService;
 
 import java.util.List;
 
 public class StudentServiceImpl implements StudentService {
+
+
+    private StudentRepository repository;
     @Override
     public Student saveStudent(Student student) {
-        Student student1 = new Student(Student student);
-        return null;
+        return repository.save(student);
     }
 
     @Override
