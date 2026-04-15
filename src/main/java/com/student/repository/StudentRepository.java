@@ -8,4 +8,5 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
     // Custom methods (optional)
     Student findByEmail(String email);
     boolean existsByEmail(String email);
+    boolean existByEmail(String email);
 }
