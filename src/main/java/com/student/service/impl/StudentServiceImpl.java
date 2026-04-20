@@ -3,13 +3,21 @@ package com.student.service.impl;
 import com.student.model.Student;
 import com.student.repository.StudentRepository;
 import com.student.service.StudentService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
 
-    private StudentRepository repository;
+    private final StudentRepository repository;
+
+    public StudentServiceImpl(StudentRepository repository) {
+        this.repository = repository;
+    }
+
+
     @Override
     public Student saveStudent(Student student) {
         return repository.save(student);
@@ -23,7 +31,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student getStudentById(int id) {
-        return null;
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
     }
 
     @Override
