@@ -50,6 +50,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteStudent(int id) {
+        Student existingStudent = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
 
+        repository.delete(existingStudent);
     }
 }
