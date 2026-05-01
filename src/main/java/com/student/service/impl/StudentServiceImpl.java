@@ -37,7 +37,15 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student updateStudent(int id, Student student) {
-        return null;
+        Student existingStudent = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
+
+        // Update fields (adjust based on your Student model)
+        existingStudent.setName(student.getName());
+        existingStudent.setEmail(student.getEmail());
+        existingStudent.setAddress(student.getAddress());
+
+        return repository.save(existingStudent);
     }
 
     @Override
