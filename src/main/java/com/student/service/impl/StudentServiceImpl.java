@@ -43,7 +43,6 @@ public class StudentServiceImpl implements StudentService {
         // Update fields (adjust based on your Student model)
         existingStudent.setName(student.getName());
         existingStudent.setEmail(student.getEmail());
-        existingStudent.setAddress(student.getAddress());
 
         return repository.save(existingStudent);
     }
