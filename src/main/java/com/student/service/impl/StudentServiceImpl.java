@@ -3,6 +3,9 @@ package com.student.service.impl;
 import com.student.model.Student;
 import com.student.repository.StudentRepository;
 import com.student.service.StudentService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +27,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        return repository.findAll();
+    public Page<Student> getAllStudents(int page, int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+
+        return repository.findAll(pageable);
     }
 
 

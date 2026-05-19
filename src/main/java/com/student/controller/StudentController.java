@@ -4,6 +4,7 @@ package com.student.controller;
 import com.student.model.Student;
 import com.student.service.StudentService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +37,12 @@ public class StudentController {
     }
 
     // Get All Students
-    @GetMapping
-    public List<Student> getAllStudents() {
-        return service.getAllStudents();
+    @GetMapping("/students")
+    public ResponseEntity<Page<Student>> getAllStudents(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        return ResponseEntity.ok(service.getAllStudents(page, size));
     }
 
     // Get Student By ID
