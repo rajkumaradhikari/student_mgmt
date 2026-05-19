@@ -26,6 +26,7 @@ public class StudentServiceImpl implements StudentService {
         return repository.save(student);
     }
 
+    //get all student with chunk of list
     @Override
     public Page<Student> getAllStudents(int page, int size) {
 
