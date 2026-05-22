@@ -1,5 +1,6 @@
 package com.student.service.impl;
 
+import com.student.exception.StudentNotFoundException;
 import com.student.model.Student;
 import com.student.repository.StudentRepository;
 import com.student.service.StudentService;
@@ -39,7 +40,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getStudentById(int id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
     }
 
     @Override
